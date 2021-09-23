@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flaskr.PersonalInfoHandling import getuuid
 
 
 def create_app(test_config=None):
@@ -25,8 +26,8 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route('/hello')
+    @app.route('/blah')
     def hello():
-        return 'Hello, World!'
+        return getuuid('384284098290849028')
 
     return app
