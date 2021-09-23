@@ -9,3 +9,6 @@ Designed for deCODE 2021
 5. cd backend
 6. python manage.py migrate
 7. python manage.py runserver
+
+
+test
