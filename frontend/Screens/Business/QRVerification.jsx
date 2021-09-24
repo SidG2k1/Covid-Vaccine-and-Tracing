@@ -34,6 +34,7 @@ const QRVerification = ({ navigation }) => {
         style={{
           borderRadius: '20px',
           border: '1px solid #000000',
+          overflow: 'hidden'
         }}
       >
         <BarCodeScanner

@@ -82,19 +82,12 @@ export default function App() {
           name="Travel"
           component={TravelScreen}
         />
-      </Stack.Navigator>
-      <Stack.Screen
-            name="Home"
-            component={WelcomeScreen}
-          />
-          <Stack.Screen
-            name="UserRegister"
-            component={UserRegistrationScreen}
-          />
           <Stack.Screen
             name="BusinessRegister"
             component={Business}
           />
+      </Stack.Navigator>
+     
       <StatusBar style="auto" />
               </NavigationContainer>
   );

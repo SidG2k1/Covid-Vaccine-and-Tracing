@@ -17,12 +17,8 @@ const ButtonWrapper = styledComponentsNativeCjs.TouchableOpacity`
   flex-direction: column;
   align-items: center;
   padding: 15px 0px;
-  /* primary blue */
 background: #2165ED;
-
-/* primary blue */
 border: 1px solid #2165ED;
-box-sizing: border-box;
 border-radius: 15px;
 `;
 

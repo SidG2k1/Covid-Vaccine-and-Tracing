@@ -8,4 +8,4 @@ font-size: 14px;
 line-height: 17px;
 color: #252525;
 text-decoration: underline;
-`
+`;
