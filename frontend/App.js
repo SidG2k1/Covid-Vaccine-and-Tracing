@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { WelcomeScreen } from "./Screens/Welcome";
+import { onboard1screen, WelcomeScreen } from "./Screens/onboard-1";
 import { UserRegistrationScreen } from "./Screens/User/Registration";
 import { UserVaccinatedScreen } from "./Screens/User/Vaccinated";
 import { UserUploadVaccinationScreen } from "./Screens/User/UploadVaccination";
@@ -18,7 +18,7 @@ import Business from './Screens/Business';
 import Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import LoadingScreen from "./Screens/LoadingScreen";
+import Loading from "./Screens/loading";
 import { onboard12Screen } from './Screens/onboard-1-2';
 import { onboard2Screen } from './Screens/onboard-2';
 import { onboard3Screen } from './Screens/onboard-3';
@@ -47,11 +47,11 @@ export default function App() {
         {/* Complete */}
         <Stack.Screen
           name="Loading"
-          component={LoadingScreen}
+          component={Loading}
         />
         <Stack.Screen
           name="Welcome"
-          component={WelcomeScreen}
+          component={onboard1screen}
         />
 
         {/* Last */}

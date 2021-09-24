@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export default function LoadingScreen({ navigation, route }) {
+export default function Loading({ navigation, route }) {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('Welcome', {})
