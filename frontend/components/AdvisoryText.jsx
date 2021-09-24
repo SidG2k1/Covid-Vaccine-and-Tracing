@@ -4,14 +4,9 @@ export default styledComponentsNativeCjs.Text`
   font-family: 'Roboto, sans-serif';
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 19px;
   line-height: 16px;
+  text-align: center;
 
   color: #E0E0E0;
-
-  flex: none;
-  order: 2;
-  align-self: flex-start;
-  flex-grow: 0;
-  margin: 10px 0px;
 `;

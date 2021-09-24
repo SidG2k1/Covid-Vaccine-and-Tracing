@@ -11,4 +11,4 @@ font-style: normal;
   letter-spacing: 0.374px;
 
   color: #E0E0E0;
-`;
+`;/* Body */
