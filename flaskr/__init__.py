@@ -1,12 +1,17 @@
 import os
 
 from flask import (Flask, request, render_template,
-                   json, jsonify, url_for, session,Response)
+                   json, jsonify, url_for, session,Response, Blueprint, redirect)
+from flask.signals import appcontext_tearing_down
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+
+
+
 CORS(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
@@ -103,7 +108,48 @@ def delete(id):
     db.session.commit()
 
 
-# a simple page that says hello
-@app.route('/hello')
-def hello():
-    return 'Hello, World!'
+
+@app.route('/api/login', methods=['GET'])
+def login():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = Customer.query.filter_by(email=email).first()
+
+    # check if the user actually exists
+    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    if not user or not check_password_hash(user.password, password):
+        # Subject to change
+        return redirect(url_for('/login'))
+
+
+    # FIX THIS
+    return redirect(url_for('/'))
+
+
+@app.route('/api/signup', methods=['POST'])
+def signup():
+    # Dependant on frontend
+    email = request.form.get('email')
+    name = request.form.get('name')
+    password = request.form.get('password')
+    vaccinated = request.form.get('vaccinated')
+    photo_id = request.form.get('photo_id')
+
+    user = Customer.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+
+    '''
+    if user: # if a user is found, we want to redirect back to signup page so user can try again
+        return redirect(url_for('/api/signup'))
+    '''
+
+    # Check if hash password
+    new_user = Customer(email=email, name=name, password=generate_password_hash(password, method='sha256'), vaccinated=vaccinated, photo_id=photo_id)
+
+    # add the new user to the database
+    db.session.add(new_user)
+    db.session.commit()
+
+
+    return redirect(url_for('/'))
+
