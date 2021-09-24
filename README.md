@@ -3,12 +3,18 @@ Designed for deCODE 2021
 
 # Backend usage
 1. Stay at the root folder covid-vaccine-and-tracing
-2. pip install pipenv
-3. pipenv shell
-4. pipenv install django
-5. cd backend
-6. python manage.py migrate
-7. python manage.py runserver
+2. python3 -m venv venv
+3. . venv/bin/activate
+4. cd flaskr
+5. pip install -r requirement.txt
+6. set environment variable: FLASK_APP="__init__.py"
+7. set environment variable: FLASK_ENV="development"
+8. run "flask shell"
+9. run "from flaskr import db"
+10. run "db.create_all()"
+11. Exit the shell
+12. run "flask run". Should be running on development server http://127.0.0.1:5000/
+13. If there are extra installation, run: "pip freeze > requirements.txt"
 
 # frontend usage
 1. run "npm install --global expo-cli"
