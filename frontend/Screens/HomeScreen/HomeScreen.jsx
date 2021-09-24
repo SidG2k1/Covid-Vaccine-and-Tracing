@@ -1,24 +1,21 @@
 import React from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Input from '../../components/Input';
+import PrimaryButton from '../../components/PrimaryButton';
+import Title from '../../components/Title';
 export const HomeScreen = ({ navigation }) => {
     return (
         <React.Fragment>
             <View style={{ padding: "10px" }} >
-                <Button
+                <Title>Hello</Title>
+                <PrimaryButton
                     title="Register"
                     onPress={() =>
                         //for future reference this is how you pass things
                         navigation.navigate('Register', { option: 'None' })
                     }
                 />
-            </View>
-            <View style={{ padding: "10px" }} >
-                <Button
-                    title="Login"
-                    onPress={() =>
-                        navigation.navigate('Login', { option: 'None' })
-                    }
-                />
+                <Input/>
             </View>
         </React.Fragment>
     );
