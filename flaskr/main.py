@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy, event
 from flask_migrate import Migrate
 from flask_cors import CORS, cross_origin
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -23,6 +24,16 @@ UserSymptom = db.Table('UserSymptoms',
     db.Column('user_id', db.Integer, db.ForeignKey('customer.id'), primary_key=True),
     db.Column('symptom_id', db.Integer, db.ForeignKey('symptoms.id'), primary_key=True)
 )
+
+""" BusinessUser model """
+class BusinessUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    business_email = db.Column(db.String(120), unique=True)
+    user_email = db.Column(db.String(120), unique=True)
+    timestamp = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f'{self.business_email}, {self.user_email}, {self.timestamp}'
 
 """ Customer user model """
 class Customer(db.Model):
@@ -80,15 +91,15 @@ def symptom_serializer(symptom):
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String(120))
 
     def __repr__(self):
-        return f'{self.id} {self.content}'
+        return f'{self.id} {self.email}'
 
 def bus_serializer(bus):
     return {
         'id': bus.id,
-        'content': bus.content,
+        'content': bus.email,
     }
 
 # Initializes db if db not exists. Creates new tables
@@ -273,3 +284,21 @@ def get_profile(email):
         db.session.commit()
 
     return response, status
+
+""" Add to BusinessUser table """
+@app.route('/api/business-user', methods=['POST'])
+def insert_businessuser():
+    data = json.loads(request.data)
+    date_time_str = data['timestamp']
+    date_time_obj = datetime.strptime(date_time_str, '%d-%m-%Y %H:%M:%S')
+    bus = BusinessUser(
+        business_email=data['business_email'],
+        user_email=data['user_email'],
+        timestamp=date_time_obj
+    )
+
+    db.session.add(bus)
+    db.session.commit()
+
+    response = {'message': 'success'}
+    return response, 200
