@@ -9,7 +9,7 @@ import Alternate from "../components/Alternate";
 export const onboard1screen = ({ navigation }) => {
   return (
     <React.Fragment>
-      <View style={{ padding: 35 }}>
+      <View>
         <div style={{ margin: "auto", marginTop: 106 }}>
           <Image source={require('../images/1.png')} style={{ width: 253, height: 170 }} />
         </div>
@@ -33,7 +33,7 @@ export const onboard1screen = ({ navigation }) => {
         </div>
         <div style={{ margin: "auto", marginTop: 93, width: "100%" }}>
           <PrimaryButton
-            title="Let's go!"
+            title="Next"
             onPress={() => navigation.navigate('onboard-1-2')}
           />
           <Alternate style={{ textAlign: "center", marginTop: 10 }}>
