@@ -12,6 +12,26 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
 db = SQLAlchemy(app)
 
+class Customer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.Text(500), nullable=False)
+    name = db.Column(db.String(500))
+    vaccinated = db.Column(db.Boolean)
+    photo_id = db.Column(db.LargeBinary)
+
+    def __str__(self):
+        return f'{self.id} {self.content}'
+
+def customer_serializer(customer):
+    return {
+        'id': customer.id,
+        'email': customer.email,
+        'name': customer.name,
+        'vaccinated': customer.vaccinated,
+        'photo_id': customer.photo_id 
+    }
+
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
@@ -30,11 +50,30 @@ def bus_serializer(bus):
 def index():
     return jsonify([*map(bus_serializer, Business.query.all())])
 
+@app.route("/api/cust", methods=['GET'])
+@cross_origin()
+def index_customer():
+    return jsonify([*map(customer_serializer, Customer.query.all())])
+
 @app.route("/api/create", methods=['POST'])
 @cross_origin()
 def create():
     request_data = json.loads(request.data)
     bus = Business(content=request_data['content'])
+
+    db.session.add(bus)
+    db.session.commit()
+
+    return {'201': 'Add succesfully'}
+
+@app.route("/api/create/cust", methods=['POST'])
+@cross_origin()
+def create_customer():
+    request_data = json.loads(request.data)
+    bus = Customer(
+                    email=request_data['email'],
+                    password=request_data['password']
+                )
 
     db.session.add(bus)
     db.session.commit()
