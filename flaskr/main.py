@@ -166,50 +166,58 @@ def delete_business(id):
 @app.route('/api/login', methods=['GET'])
 @cross_origin()
 def login():
-    email = request.form.get('email')
-    password = request.form.get('password')
+    email = "test123@gmail.com"
+    password = "abc123"
 
     user = Customer.query.filter_by(email=email).first()
 
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    # Todo:
+    # Check if user exists or password is invalid
+    # Place holder returning JSON object with property success=False
     if not user or not check_password_hash(user.password, password):
-        # Subject to change
-        return redirect(url_for('/login'))
+        return jsonify(success=False)
 
 
-    # FIX THIS
-    return redirect(url_for('/'))
+    # Returning JSON object with info of user logged in
+    return jsonify(customer_serializer(user))
 
 
 @app.route('/api/signup', methods=['POST'])
 @cross_origin()
 def signup():
-    # Dependant on frontend
-    # Signup should only require email and password. This is the first page
-    # Subsequent pages ask for more 
-    email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
-    vaccinated = request.form.get('vaccinated')
-    photo_id = request.form.get('photo_id')
 
-    user = Customer.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+    # Replace with parsed JSON data that's being sent from frontend
+    email = "test123@gmail.com"
+    password = "abc123"
+    first_time_log = True
+    name = "Luke Son test"
+    photo_id = None
+    province = None
+    screen_question_2 = None
+    screen_question_3 = None
+    screen_question_4 = None
+    vaccinated = None
+    vaccine_receipt = None
 
-    '''
-    if user: # if a user is found, we want to redirect back to signup page so user can try again
-        return redirect(url_for('/api/signup'))
-    '''
+    # Check if user exists
+    user = Customer.query.filter_by(email=email).first()
+    # Todo:
+    # Return indiciator that user already exists so that frontend can display error message
+    # Place holder returning JSON object with property success=False
+    if user:
+        return jsonify(success=False)
 
-    # Check if hash password
-    new_user = Customer(email=email, password=generate_password_hash(password, method='sha256'), name=name, vaccinated=vaccinated, photo_id=photo_id)
+    # Make sure password is hashed for security
+    new_user = Customer(email=email, password=generate_password_hash(password, method='sha256'), first_time_log=first_time_log,
+                        name=name, photo_id=photo_id, province=province, screen_question_2=screen_question_2, screen_question_3=screen_question_3,
+                        screen_question_4=screen_question_4, vaccinated=vaccinated, vaccine_receipt= vaccine_receipt)
 
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()
 
 
-    return redirect(url_for('/'))
+    return jsonify(success=True)
 
 
 @app.route('/api/edit/<email>', methods=['PUT'])
