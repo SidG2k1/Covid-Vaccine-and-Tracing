@@ -14,6 +14,7 @@ import { CloseContactScreen } from "./Screens/User/CloseContact";
 import { TravelScreen } from "./Screens/User/Travel";
 import { IdentificationPage } from './Screens/User/IdentificationPage';
 import { QRPage } from './Screens/User/QRPage';
+import LoadingScreen from "./Screens/LoadingScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -24,15 +25,20 @@ export default function App() {
           headerShown: false,
           contentStyle: {
             backgroundColor: '#FFFFFF',
-            paddingLeft: 30,
-            paddingRight: 30
           }
         }}
       >
+        {/* Complete */}
         <Stack.Screen
-          name="Home"
+          name="Loading"
+          component={LoadingScreen}
+        />
+        <Stack.Screen
+          name="Welcome"
           component={WelcomeScreen}
         />
+
+        {/* Last */}
         <Stack.Screen
           name="UserRegister"
           component={UserRegistrationScreen}
