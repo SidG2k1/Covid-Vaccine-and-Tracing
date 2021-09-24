@@ -7,15 +7,14 @@ export default styled.TextInput`
   padding: 20px 24px;
 
   background: #FFFFFF;
-  border: 1px solid #000000;
+  border: 1px solid #252525;
   border-radius: 15px;
-  font-family: 'Roboto, sans-serif';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
   line-height: 22px;
-
+  text-align: center;
 letter-spacing: -0.408px;
-
-color: #E0E0E0;
+rgba(37, 37, 37, 0.6);
 `;

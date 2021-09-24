@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export default styled.Text`
-font-family: 'Roboto-Bold';
+font-family: 'Montserrat-Bold';
 font-style: normal;
   font-weight: bold;
   font-size: 34px;
@@ -10,5 +10,5 @@ font-style: normal;
   text-align: center;
   letter-spacing: 0.374px;
 
-  color: #E0E0E0;
+  color: #252525;
 `;/* Body */

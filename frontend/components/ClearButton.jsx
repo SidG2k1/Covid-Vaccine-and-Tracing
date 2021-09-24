@@ -2,8 +2,11 @@ import styledComponentsNativeCjs from "styled-components/native";
 import React from 'react';
 
 const ButtonWrapper = styledComponentsNativeCjs.TouchableOpacity`
+/* UI White */
 background: #FFFFFF;
-border: 1px solid #000000;
+
+/* primary blue */
+border: 1px solid #2165ED;
 border-radius: 15px;
 height: 62px;
 display: flex;
@@ -12,7 +15,7 @@ align-items: center;
 `;
 
 const ButtonText = styledComponentsNativeCjs.Text`
-  font-family: 'Roboto, sans-serif';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: normal;
   font-size: 17px;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import styledComponentsNativeCjs from 'styled-components/native';
-import ClearButton from '../../components/ClearButton';
+import Alternate from '../../components/Alternate';
 import Icon from '../../components/Icon';
 import Input from '../../components/Input';
+import PrimaryButton from '../../components/PrimaryButton';
 import Subtitle from '../../components/Subtitle';
 import Title from '../../components/Title';
 
@@ -43,7 +44,8 @@ const Code = (props) => {
           </View>
         }
       </View>
-      <ClearButton title="CONTINUE" onPress={() => props.navigation.navigate("Verified")}/>
+      <PrimaryButton title="CONTINUE" onPress={() => props.navigation.navigate("Verified")}/>
+      <Alternate>Code help</Alternate>
     </View>
   );
 }

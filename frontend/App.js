@@ -6,15 +6,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
 import { UserRegistrationScreen } from "./Screens/User/Registration";
 import Business from './Screens/Business';
-import Font, {useFonts} from 'expo-font';
+import Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [loaded] = useFonts({
-    'Roboto, sans-serif': require("./assets/fonts/Roboto-Regular.ttf"),
-    'Roboto-Bold': require("./assets/fonts/Roboto-Bold.ttf"),
-    'Roboto-Black': require("./assets/fonts/Roboto-Black.ttf")
+    'Montserrat': Montserrat_400Regular,
+    'Montserrat-Bold': Montserrat_700Bold,
   })
 
   return !loaded ? <AppLoading/> : (
