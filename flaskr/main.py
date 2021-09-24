@@ -99,6 +99,11 @@ if len(Symptoms.query.all()) == 0:
 
 """ Below are the API route methods """
 
+@app.route("/", methods=['GET'])
+@cross_origin()
+def index():
+    return render_template('index.html')
+
 @app.route("/api/businesses", methods=['GET'])
 @cross_origin()
 def index_business():
