@@ -110,6 +110,7 @@ def delete(id):
 
 
 @app.route('/api/login', methods=['GET'])
+@cross_origin()
 def login():
     email = request.form.get('email')
     password = request.form.get('password')
@@ -128,6 +129,7 @@ def login():
 
 
 @app.route('/api/signup', methods=['POST'])
+@cross_origin()
 def signup():
     # Dependant on frontend
     email = request.form.get('email')
