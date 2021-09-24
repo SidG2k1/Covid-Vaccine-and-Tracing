@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
+import { UserRegistrationScreen } from "./Screens/User/Registration";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +23,10 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={WelcomeScreen}
+          />
+          <Stack.Screen
+            name="UserRegister"
+            component={UserRegistrationScreen}
           />
         </Stack.Navigator>
         <StatusBar style="auto" />

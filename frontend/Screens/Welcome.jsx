@@ -12,10 +12,18 @@ export const WelcomeScreen = ({ navigation }) => {
 
         <AdvisoryText style={{ marginTop: 52 }}>I am a</AdvisoryText>
         <div style={{ marginTop: 10 }}>
-          <SecondaryButton title="Business" />
+          <SecondaryButton
+            title="Business"
+
+          />
         </div>
         <div style={{ marginTop: 20 }}>
-          <SecondaryButton title="Customer" />
+          <SecondaryButton
+            title="Customer"
+            onPress={() =>
+              navigation.navigate('UserRegister', { option: 'None' })
+            }
+          />
         </div>
       </View>
     </React.Fragment>
