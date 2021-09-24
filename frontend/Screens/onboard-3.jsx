@@ -20,7 +20,7 @@ export const onboard3Screen = ({ navigation, route }) => {
 
         <div style={{ marginTop: 80.5 }}>
           <Label>Password: </Label>
-          <Input style={{ textAlign: 'left', width: "100%", marginTop: 10 }} />
+          <Input secureTextEntry={true} style={{ textAlign: 'left', width: "100%", marginTop: 10 }} />
         </div>
 
         <div style={{ margin: "auto", marginTop: 60.5 }}>
