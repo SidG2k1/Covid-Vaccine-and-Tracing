@@ -11,20 +11,25 @@ export const WelcomeScreen = ({ navigation }) => {
         <AdvisoryText>Welcome to...</AdvisoryText>
 
         <AdvisoryText style={{ marginTop: 52 }}>I am a</AdvisoryText>
-        <div style={{ marginTop: 10 }}>
           <SecondaryButton
             title="Business"
+            onPress={() => navigation.navigate('BusinessRegister')}
+            style={styles.button}
           />
-        </div>
-        <div style={{ marginTop: 20 }}>
           <SecondaryButton
             title="Customer"
             onPress={() =>
               navigation.navigate('UserRegister', {})
             }
+            style={styles.button}
           />
-        </div>
       </View>
     </React.Fragment>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 20
+  }
+})

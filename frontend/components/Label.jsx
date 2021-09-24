@@ -1,7 +1,7 @@
 import styledComponentsNativeCjs from "styled-components/native";
 
 export default styledComponentsNativeCjs.Text`
-font-family: 'Roboto, sans-serif';
+font-family: 'Montserrat';
 font-style: normal;
   font-weight: 900;
   font-size: 17px;
@@ -9,7 +9,7 @@ font-style: normal;
 
   letter-spacing: -0.408px;
 
-  color: #E0E0E0;
+  color: #252525;
 
   flex: none;
   order: 0;
