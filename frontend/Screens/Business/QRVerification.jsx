@@ -7,6 +7,7 @@ import Svg, { Path, Rect } from 'react-native-svg';
 import Subtitle from '../../components/Subtitle';
 import PrimaryButton from '../../components/PrimaryButton';
 import Alternate from '../../components/Alternate';
+import axios from 'axios';
 
 const CamView = styledComponentsNativeCjs.View`
 box-shadow: -4px 4px 8px #CFD7E9;
@@ -47,7 +48,15 @@ const QRVerification = ({ navigation }) => {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    const timestamp = new Date().toLocaleString("en-GB").replaceAll("/", "-").replaceAll(",", "");
+    console.log(timestamp);
+    axios.post("https://decode-covidtracker-api.herokuapp.com/api/business-user", { business_email: "foko@workforce.com", user_email: "tom@tom.com", timestamp})
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
 
   };
 
@@ -62,7 +71,7 @@ const QRVerification = ({ navigation }) => {
    
           <View>
 
-          <Title style={{ marginTop: 30, marginBottom: 5}}>{ scanned ? "User 1000-01" : "QR Code Scan"}</Title>
+          <Title style={{ marginTop: 30, marginBottom: 5}}>{ scanned ? "tom@tom.com" : "QR Code Scan"}</Title>
       <CamView>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}

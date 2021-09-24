@@ -15,8 +15,8 @@ const IconRow = styledComponentsNativeCjs.View`
 `
 
 const Code = (props) => {
-  const [code, setCode] = React.useState("");
-  const [pass, setPass] = React.useState("");
+  const [code, setCode] = React.useState("foko@workforce.com");
+  const [pass, setPass] = React.useState("password");
   const [correct, setCorrect] = React.useState(false);
   return (
     <View>
