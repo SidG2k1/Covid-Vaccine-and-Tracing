@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy, event
 from flask_migrate import Migrate
 from flask_cors import CORS, cross_origin
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -19,6 +20,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+UserSymptom = db.Table('UserSymptoms',
+    db.Column('user_id', db.Integer, db.ForeignKey('customer.id'), primary_key=True),
+    db.Column('symptom_id', db.Integer, db.ForeignKey('symptoms.id'), primary_key=True)
+)
+
+""" BusinessUser model """
+class BusinessUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    business_email = db.Column(db.String(120), unique=True)
+    user_email = db.Column(db.String(120), unique=True)
+    timestamp = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f'{self.business_email}, {self.user_email}, {self.timestamp}'
+
 """ Customer user model """
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,15 +46,20 @@ class Customer(db.Model):
     first_time_log = db.Column(db.Boolean, default=True)
     province = db.Column(db.String(250))
     vaccine_receipt = db.Column(db.Integer)
+    screen_question_1 = db.relationship('Symptoms', secondary=UserSymptom,
+        backref=db.backref('customers'))
     screen_question_2 = db.Column(db.Integer)
     screen_question_3 = db.Column(db.Integer)
     screen_question_4 = db.Column(db.Integer)
     completed = db.Column(db.Boolean, default = False)
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.id} {self.email} {self.name} {self.vaccinated} {self.photo_id} {self.first_time_log} {self.province} {self.vaccine_receipt} {self.screen_question_2} {self.screen_question_3} {self.screen_question_4} {self.completed}'
 
 def customer_serializer(customer):
+    symptoms = []
+    if customer.screen_question_1:
+        symptoms = [symptom_serializer(symptom) for symptom in customer.screen_question_1]
     return {
         'id': customer.id,
         'email': customer.email,
@@ -48,6 +69,7 @@ def customer_serializer(customer):
         'first_time_log': customer.first_time_log,
         'province': customer.province,
         'vaccine_receipt': customer.vaccine_receipt,
+        'screen_question_1': symptoms,
         'screen_question_2': customer.screen_question_2,
         'screen_question_3': customer.screen_question_3,
         'screen_question_4': customer.screen_question_4
@@ -58,25 +80,26 @@ class Symptoms(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     symptom = db.Column(db.String(1000))
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.id} {self.symptom}'
 
-UserSymptom = db.Table('UserSymptoms',
-    db.Column('user_id', db.Integer, db.ForeignKey('customer.id'), primary_key=True),
-    db.Column('symptom_id', db.Integer, db.ForeignKey('symptoms.id'), primary_key=True)
-)
+def symptom_serializer(symptom):
+    return {
+        'id': symptom.id,
+        'symptom': symptom.symptom
+    }
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String(120))
 
-    def __str__(self):
-        return f'{self.id} {self.content}'
+    def __repr__(self):
+        return f'{self.id} {self.email}'
 
 def bus_serializer(bus):
     return {
         'id': bus.id,
-        'content': bus.content,
+        'content': bus.email,
     }
 
 # Initializes db if db not exists. Creates new tables
@@ -246,3 +269,41 @@ def edit_profile(email):
         db.session.commit()
 
     return response, status
+
+@app.route('/api/<email>', methods=['GET'])
+def get_profile(email):
+    # Find user by email
+    user = Customer.query.filter_by(email=email)
+
+    # Default message and status
+    response = {'message': 'retrieved'}
+    status = 200
+
+    if user.first() is None:
+        # User not found in db. Modify response and status. Don't need to update row
+        response = {'message': 'User not found'}
+        status = 404
+    else:
+        # Update the user's info given request data
+        response = jsonify([*map(customer_serializer, user)])
+        db.session.commit()
+
+    return response, status
+
+""" Add to BusinessUser table """
+@app.route('/api/business-user', methods=['POST'])
+def insert_businessuser():
+    data = json.loads(request.data)
+    date_time_str = data['timestamp']
+    date_time_obj = datetime.strptime(date_time_str, '%d-%m-%Y %H:%M:%S')
+    bus = BusinessUser(
+        business_email=data['business_email'],
+        user_email=data['user_email'],
+        timestamp=date_time_obj
+    )
+
+    db.session.add(bus)
+    db.session.commit()
+
+    response = {'message': 'success'}
+    return response, 200
