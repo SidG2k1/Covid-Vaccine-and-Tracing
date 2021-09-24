@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Title from "../../components/Title";
 
-const QRVerification = () => {
+const QRVerification = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -17,7 +17,7 @@ const QRVerification = () => {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    
+    navigation.navigate("GuestVerified", { data });
   };
 
   if (hasPermission === null) {
@@ -30,10 +30,21 @@ const QRVerification = () => {
   return (
     <View>
       <Title>QR CODE VERIFICATION</Title>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
+      <View
+        style={{
+          borderRadius: '20px',
+          border: '1px solid #000000',
+        }}
+      >
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={{
+            height: 408,
+            width: '100%',
+          }}
+        />
+      </View>
+      
       {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
     </View>
   );

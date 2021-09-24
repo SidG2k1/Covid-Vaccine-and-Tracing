@@ -6,10 +6,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
 import { UserRegistrationScreen } from "./Screens/User/Registration";
 import Business from './Screens/Business';
+import Font, {useFonts} from 'expo-font';
+import AppLoading from 'expo-app-loading';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
+  const [loaded] = useFonts({
+    'Roboto, sans-serif': require("./assets/fonts/Roboto-Regular.ttf"),
+    'Roboto-Bold': require("./assets/fonts/Roboto-Bold.ttf"),
+    'Roboto-Black': require("./assets/fonts/Roboto-Black.ttf")
+  })
+
+  return !loaded ? <AppLoading/> : (
     <NavigationContainer>
         <Stack.Navigator
           screenOptions={{

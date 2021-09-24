@@ -8,9 +8,8 @@ export default styled.TextInput`
 
   background: #FFFFFF;
   border: 1px solid #000000;
-  box-sizing: border-box;
   border-radius: 15px;
-  font-family: 'SF Pro Text, sans-serif';
+  font-family: 'Roboto, sans-serif';
   font-style: normal;
   font-weight: normal;
   font-size: 17px;

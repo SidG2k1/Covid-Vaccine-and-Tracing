@@ -9,7 +9,7 @@ const Verified = ({ navigation }) => {
 
   return (
     <View>
-      <Icon checked/>
+      <Icon hasCheckbox/>
       <Title>BUSINESS VERIFIED</Title>
       <Subtitle>Let’s get you set up with your scanning system to verify the vaccination status of your guests.</Subtitle>
       <ClearButton title="SCAN" onPress={() => navigation.navigate("QRVerification")}/>

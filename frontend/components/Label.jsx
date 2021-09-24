@@ -1,7 +1,7 @@
 import styledComponentsNativeCjs from "styled-components/native";
 
 export default styledComponentsNativeCjs.Text`
-font-family: 'Roboto, sans-serif';
+font-family: 'Roboto-Black';
 font-style: normal;
   font-weight: 900;
   font-size: 17px;

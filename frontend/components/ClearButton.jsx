@@ -4,7 +4,6 @@ import React from 'react';
 const ButtonWrapper = styledComponentsNativeCjs.TouchableOpacity`
 background: #FFFFFF;
 border: 1px solid #000000;
-box-sizing: border-box;
 border-radius: 15px;
 height: 62px;
 display: flex;

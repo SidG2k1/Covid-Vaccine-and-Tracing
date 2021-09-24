@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export default styled.Text`
-font-family: 'Roboto, sans-serif';
+font-family: 'Roboto-Bold';
 font-style: normal;
   font-weight: bold;
   font-size: 34px;

@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Code from "./Code";
+import GuestVerified from './GuestVerified';
 import QRVerification from './QRVerification';
 import Verified from './Verified';
 
@@ -31,6 +32,11 @@ const Business = () => {
       <Stack.Screen
         name="QRVerification"
         component={QRVerification}
+      />
+
+      <Stack.Screen
+        name="GuestVerified"
+        component={GuestVerified}
       />
       
     </Stack.Navigator>
