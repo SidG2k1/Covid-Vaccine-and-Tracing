@@ -22,3 +22,10 @@ Designed for deCODE 2021
 3. You can either scan the QR code with Expo App or use the web option (found on the left hand side of the app)
 4. make changes and see them live
 5. make sure ***NOT*** be in frontend folder when doing git pushes
+
+# API continuous deployment(make sure to downdload heroku cli first):
+1. Checkout to a new branch not on main
+2. git remote add heroku https://git.heroku.com/decode-covidtracker-api.git
+3. heroku git:remote -a decode-covidtracker-api
+4. git pull heroku HEAD:master --allow-unrelated-histories (resolve mreging conflict if there is one)
+5. git push heroku HEAD:master
