@@ -14,10 +14,19 @@ import { CloseContactScreen } from "./Screens/User/CloseContact";
 import { TravelScreen } from "./Screens/User/Travel";
 import { IdentificationPage } from './Screens/User/IdentificationPage';
 import { QRPage } from './Screens/User/QRPage';
+import Business from './Screens/Business';
+import Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
+  const [loaded] = useFonts({
+    'Montserrat': Montserrat_400Regular,
+    'Montserrat-Bold': Montserrat_700Bold,
+  })
+
+  return !loaded ? <AppLoading/> : (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -74,8 +83,20 @@ export default function App() {
           component={TravelScreen}
         />
       </Stack.Navigator>
+      <Stack.Screen
+            name="Home"
+            component={WelcomeScreen}
+          />
+          <Stack.Screen
+            name="UserRegister"
+            component={UserRegistrationScreen}
+          />
+          <Stack.Screen
+            name="BusinessRegister"
+            component={Business}
+          />
       <StatusBar style="auto" />
-    </NavigationContainer>
+              </NavigationContainer>
   );
 }
 

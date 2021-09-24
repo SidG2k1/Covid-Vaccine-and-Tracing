@@ -2,14 +2,14 @@ import React from 'react';
 import styledComponentsNativeCjs from "styled-components/native";
 
 const ButtonText = styledComponentsNativeCjs.Text`
-  font-family: 'Roboto, sans-serif';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
   line-height: 22px;
   text-align: center;
   letter-spacing: -0.408px;
-  color: #000;
+  color: #2165ED;
 `;
 
 const ButtonWrapper = styledComponentsNativeCjs.TouchableOpacity`
@@ -17,10 +17,10 @@ const ButtonWrapper = styledComponentsNativeCjs.TouchableOpacity`
   flex-direction: column;
   align-items: center;
   padding: 15px 0px;
-  background: #FFF;
-  border-radius: 15px;
+  background: #FFFFFF;
 
-  border: 1.5px solid #000000;
+  border: 1px solid #2165ED;
+  border-radius: 15px;
 `;
 
 const SecondaryButton = (props) => {
