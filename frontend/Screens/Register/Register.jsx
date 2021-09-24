@@ -4,6 +4,6 @@ import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-nativ
 
 export const Register = ({ navigation, route }) => {
     return (
-    <Text>given params are {route.params.option}</Text>
+      <Text>given params are {route.params.option}</Text>
     );
   };
