@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
 import { UserRegistrationScreen } from "./Screens/User/Registration";
+import { UserVaccinatedScreen } from "./Screens/User/Vaccinated";
+import { UserUploadVaccinationScreen } from "./Screens/User/UploadVaccination";
+import { UserVerifiedScreen } from "./Screens/User/Verified/UserVerified";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -27,6 +30,18 @@ export default function App() {
           <Stack.Screen
             name="UserRegister"
             component={UserRegistrationScreen}
+          />
+          <Stack.Screen
+            name="UserVaccinated"
+            component={UserVaccinatedScreen}
+          />
+          <Stack.Screen
+            name="UserUploadVaccination"
+            component={UserUploadVaccinationScreen}
+          />
+          <Stack.Screen
+            name="UserVerified"
+            component={UserVerifiedScreen}
           />
         </Stack.Navigator>
         <StatusBar style="auto" />
