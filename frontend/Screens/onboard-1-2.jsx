@@ -4,6 +4,8 @@ import SecondaryButton from "../components/SecondaryButton";
 import DropDown from "../components/DropDown"
 import Subtitle from "../components/Subtitle"
 import { View, Image, StyleSheet } from 'react-native';
+import PrimaryButton from "../components/PrimaryButton";
+import Alternate from "../components/Alternate";
 
 export const onboard12Screen = ({ navigation, route }) => {
     const PROVINCES = ["Alberta",
@@ -21,23 +23,36 @@ export const onboard12Screen = ({ navigation, route }) => {
         "Yukon"]
     return (
         <React.Fragment>
-            
-            <Image style={{height:155, width:203, alignSelf:"center", marginTop:100}} source={require('../images/2.png')}/>
-            <Title style={{marginBottom: 20, marginTop: 50 }}>Location</Title>
-            <Subtitle style={{fontSize:12}}>For the most up-to-date experience with covid-19 restrictions ...</Subtitle>
-            <div style={{ marginTop: 50 }}>
-                <div style={{ marginBottom: 50 }}>
-                    
-            <Subtitle style={{}}>Province:</Subtitle>
-                <DropDown values={PROVINCES}/>
-                </div>
-                <SecondaryButton
-                    title="Next"
-                    onPress={() =>
-                        navigation.navigate('onboard-2', route.params)
-                    }
-                />
+          <View>
+            <div style={{ margin: "auto", marginTop: 106 }}>
+              <Image source={require('../images/2.png')} style={{ width: 203, height: 155 }} />
             </div>
+
+            <Title style={{ marginTop: 38 }}>
+              LOCATION
+            </Title>
+
+            <Subtitle style={{fontSize:14, marginTop: 24}}>
+              For the most up-to-date experience<br/> with covid-19 restrictions ...
+            </Subtitle>
+
+
+            <div style={{ marginTop: 30 }}>
+
+            <Subtitle>Province:</Subtitle>
+            <DropDown values={PROVINCES}/>
+            </div>
+
+            <div style={{ margin: "auto", marginTop: 114, width: "100%" }}>
+              <PrimaryButton
+                title="Scan"
+                onPress={() => navigation.navigate('onboard-2')}
+              />
+              <Alternate style={{ textAlign: "center", marginTop: 10 }}>
+                I prefer not to say
+              </Alternate>
+            </div>
+          </View>
         </React.Fragment>
     );
 };

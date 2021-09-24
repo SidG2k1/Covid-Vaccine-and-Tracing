@@ -118,10 +118,6 @@ export default function App() {
           />
         </Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={WelcomeScreen}
-        />
-        <Stack.Screen
           name="UserRegister"
           component={UserRegistrationScreen}
         />
