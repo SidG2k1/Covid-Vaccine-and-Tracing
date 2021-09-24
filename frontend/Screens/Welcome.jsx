@@ -20,7 +20,7 @@ export const WelcomeScreen = ({ navigation }) => {
           <SecondaryButton
             title="Customer"
             onPress={() =>
-              navigation.navigate('UserRegister', {})
+              navigation.navigate('onboard-1-2', {})
             }
           />
         </div>

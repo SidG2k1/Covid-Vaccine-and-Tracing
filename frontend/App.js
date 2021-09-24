@@ -15,6 +15,13 @@ import { TravelScreen } from "./Screens/User/Travel";
 import { IdentificationPage } from './Screens/User/IdentificationPage';
 import { QRPage } from './Screens/User/QRPage';
 import LoadingScreen from "./Screens/LoadingScreen";
+import { onboard12Screen } from './Screens/onboard-1-2';
+import { onboard2Screen } from './Screens/onboard-2';
+import { onboard3Screen } from './Screens/onboard-3';
+import { onboard4Screen } from './Screens/onboard-4';
+import { onboard42Screen } from './Screens/onboard-4-2';
+import { docVerify1Screen } from './Screens/doc-verify-1';
+import { docVerify2Screen } from './Screens/doc-verify-2';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -39,6 +46,26 @@ export default function App() {
         />
 
         {/* Last */}
+        <Stack.Screen
+          name="onboard-1-2"
+          component={onboard12Screen}
+        />
+        <Stack.Screen
+          name="onboard-2"
+          component={onboard2Screen}
+        />
+        <Stack.Screen
+          name="onboard-3"
+          component={onboard3Screen}
+        />
+        <Stack.Screen
+          name="onboard-4"
+          component={onboard4Screen}
+        />
+        <Stack.Screen
+          name="onboard-4-2"
+          component={onboard42Screen}
+        />
         <Stack.Screen
           name="UserRegister"
           component={UserRegistrationScreen}
