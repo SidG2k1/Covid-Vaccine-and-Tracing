@@ -35,7 +35,7 @@ export default function App() {
   })
 
   return !loaded ? <AppLoading /> : (
-    <div style={{width:"80%", marginLeft:"auto",marginRight:"auto"}}>
+    <div style={{ width: "80%", marginLeft: "auto", marginRight: "auto" }}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
