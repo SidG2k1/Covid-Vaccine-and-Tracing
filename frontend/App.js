@@ -3,24 +3,78 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {HomeScreen} from './Screens/HomeScreen/HomeScreen.jsx';
-import {Register} from './Screens/Register/Register.jsx';
+import { WelcomeScreen } from "./Screens/Welcome";
+import { UserRegistrationScreen } from "./Screens/User/Registration";
+import { UserVaccinatedScreen } from "./Screens/User/Vaccinated";
+import { UserUploadVaccinationScreen } from "./Screens/User/UploadVaccination";
+import { UserVerifiedScreen } from "./Screens/User/Verified/UserVerified";
+import { SymptomsScreen } from "./Screens/User/Symptoms";
+import { HouseSymptomsScreen } from "./Screens/User/HouseSymptoms";
+import { CloseContactScreen } from "./Screens/User/CloseContact";
+import { TravelScreen } from "./Screens/User/Travel";
+import { IdentificationPage } from './Screens/User/IdentificationPage';
+import { QRPage } from './Screens/User/QRPage';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-          />
-          <Stack.Screen
-            name="Register"
-            component={Register}
-          />
-        </Stack.Navigator>
-        <StatusBar style="auto" />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: '#FFFFFF',
+            paddingLeft: 30,
+            paddingRight: 30
+          }
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={WelcomeScreen}
+        />
+        <Stack.Screen
+          name="UserRegister"
+          component={UserRegistrationScreen}
+        />
+        <Stack.Screen
+          name="IdentificationPage"
+          component={IdentificationPage}
+        />
+        <Stack.Screen
+          name="QRPage"
+          component={QRPage}
+        />
+        <Stack.Screen
+          name="UserVaccinated"
+          component={UserVaccinatedScreen}
+        />
+        <Stack.Screen
+          name="UserUploadVaccination"
+          component={UserUploadVaccinationScreen}
+        />
+        <Stack.Screen
+          name="UserVerified"
+          component={UserVerifiedScreen}
+        />
+        <Stack.Screen
+          name="Symptoms"
+          component={SymptomsScreen}
+        />
+        <Stack.Screen
+          name="HouseSymptoms"
+          component={HouseSymptomsScreen}
+        />
+        <Stack.Screen
+          name="CloseContact"
+          component={CloseContactScreen}
+        />
+        <Stack.Screen
+          name="Travel"
+          component={TravelScreen}
+        />
+      </Stack.Navigator>
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
