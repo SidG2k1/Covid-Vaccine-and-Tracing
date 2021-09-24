@@ -5,7 +5,7 @@ import SecondaryButton from "../../components/SecondaryButton";
 
 export const HouseSymptomsScreen = ({ navigation, route }) => {
     return (
-        <>
+        <React.Fragment>
             <Title style={{ marginTop: 170, marginBottom: 70 }}>Has anyone in your household experienced
                 any symptoms in the past 14 days?</Title>
 
@@ -19,9 +19,9 @@ export const HouseSymptomsScreen = ({ navigation, route }) => {
                 <SecondaryButton
                     title="No"
                     onPress={() =>
-                        navigation.navigate('CloseContact', { option: 'None' })
+                        navigation.navigate('CloseContact', route.params)
                     } />
             </div>
-        </>
+        </React.Fragment>
     );
 };

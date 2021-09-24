@@ -5,7 +5,7 @@ import PrimaryButton from "../../../components/PrimaryButton";
 
 export const UserVerifiedScreen = ({ navigation, route }) => {
   return (
-    <>
+    <React.Fragment>
       <Title style={{ marginTop: 43 }}>VERIFIED!</Title>
 
       <div style={{ marginTop: 31 }}>
@@ -18,10 +18,11 @@ export const UserVerifiedScreen = ({ navigation, route }) => {
       <Subtitle>You can scan your receipt to generate you QR code.</Subtitle>
       <div style={{ marginTop: 30 }}>
         <PrimaryButton title="Continue"
+        //this onpress will call a function that will check if its their first time login on today
           onPress={() =>
-            navigation.navigate('Symptoms', { option: 'None' })
+            navigation.navigate('Symptoms', route.params)
           } />
       </div>
-    </>
+    </React.Fragment>
   );
 };

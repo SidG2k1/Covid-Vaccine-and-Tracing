@@ -5,7 +5,7 @@ import SecondaryButton from "../../components/SecondaryButton";
 
 export const CloseContactScreen = ({ navigation, route }) => {
     return (
-        <>
+        <React.Fragment>
             <Title style={{ marginTop: 170, marginBottom: 70 }}>In the past 14 days, have you been identified
                 as a close contact of someone with
                 suspected or confirmed COVID-19?</Title>
@@ -20,9 +20,9 @@ export const CloseContactScreen = ({ navigation, route }) => {
                 <SecondaryButton
                     title="No"
                     onPress={() =>
-                        navigation.navigate('Travel', { option: 'None' })
+                        navigation.navigate('Travel', route.params)
                     } />
             </div>
-        </>
+        </React.Fragment>
     );
 };
