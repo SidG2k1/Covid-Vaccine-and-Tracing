@@ -24,7 +24,7 @@ border-radius: 15px;
 
 const PrimaryButton = (props) => {
   return (
-    <ButtonWrapper onPress={props.onPress}>
+    <ButtonWrapper style={props.style} onPress={props.onPress}>
       <ButtonText>{props.title}</ButtonText>
     </ButtonWrapper>
   );

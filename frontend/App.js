@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
@@ -27,14 +27,14 @@ export default function App() {
   })
 
   return !loaded ? <AppLoading/> : (
-    <NavigationContainer>
+    <ScrollView contentContainerStyle={{flex: 1}}>
+      <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
           contentStyle: {
             backgroundColor: '#FFFFFF',
-            paddingLeft: 30,
-            paddingRight: 30
+           
           }
         }}
       >
@@ -90,6 +90,7 @@ export default function App() {
      
       <StatusBar style="auto" />
               </NavigationContainer>
+              </ScrollView>
   );
 }
 
@@ -99,5 +100,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: "100%",
+    height: "100%"
   },
+ 
 });

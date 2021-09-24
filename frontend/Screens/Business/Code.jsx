@@ -4,6 +4,7 @@ import Svg, { Defs, Image, Path, Pattern, Rect, Use } from 'react-native-svg';
 import styledComponentsNativeCjs from 'styled-components/native';
 import Alternate from '../../components/Alternate';
 import Input from '../../components/Input';
+import Label from '../../components/Label';
 import PrimaryButton from '../../components/PrimaryButton';
 import Subtitle from '../../components/Subtitle';
 import Title from '../../components/Title';
@@ -15,12 +16,12 @@ const IconRow = styledComponentsNativeCjs.View`
 
 const Code = (props) => {
   const [code, setCode] = React.useState("");
+  const [pass, setPass] = React.useState("");
   const [correct, setCorrect] = React.useState(false);
   return (
     <View>
-      <Title>BUSINESS CODE:</Title>
-      <Subtitle>Please enter your unique 10-digit scanning code.</Subtitle>
-      <Svg width="253" height="257" viewBox="0 0 253 257" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <View style={{display: "flex", width: "100%", flexDirection: "row", justifyContent: "center"}}>
+      <Svg style={{marginTop: 80}} width="253" height="257" viewBox="0 0 253 257" fill="none" xmlns="http://www.w3.org/2000/svg">
         <Rect width="253" height="170" fill="url(#pattern0)"/>
         <Path d="M51.048 214.432C48.48 214.432 46.152 213.88 44.064 212.776C42 211.648 40.368 210.1 39.168 208.132C37.992 206.14 37.404 203.896 37.404 201.4C37.404 198.904 37.992 196.672 39.168 194.704C40.368 192.712 42 191.164 44.064 190.06C46.152 188.932 48.492 188.368 51.084 188.368C53.268 188.368 55.236 188.752 56.988 189.52C58.764 190.288 60.252 191.392 61.452 192.832L57.708 196.288C56.004 194.32 53.892 193.336 51.372 193.336C49.812 193.336 48.42 193.684 47.196 194.38C45.972 195.052 45.012 196 44.316 197.224C43.644 198.448 43.308 199.84 43.308 201.4C43.308 202.96 43.644 204.352 44.316 205.576C45.012 206.8 45.972 207.76 47.196 208.456C48.42 209.128 49.812 209.464 51.372 209.464C53.892 209.464 56.004 208.468 57.708 206.476L61.452 209.932C60.252 211.396 58.764 212.512 56.988 213.28C55.212 214.048 53.232 214.432 51.048 214.432ZM110.009 188.8L99.101 214H93.341L82.469 188.8H88.769L96.437 206.8L104.213 188.8H110.009ZM112.113 188.8H117.945V214H112.113V188.8ZM123.926 188.8H135.374C138.11 188.8 140.522 189.328 142.61 190.384C144.722 191.416 146.354 192.88 147.506 194.776C148.682 196.672 149.27 198.88 149.27 201.4C149.27 203.92 148.682 206.128 147.506 208.024C146.354 209.92 144.722 211.396 142.61 212.452C140.522 213.484 138.11 214 135.374 214H123.926V188.8ZM135.086 209.212C137.606 209.212 139.61 208.516 141.098 207.124C142.61 205.708 143.366 203.8 143.366 201.4C143.366 199 142.61 197.104 141.098 195.712C139.61 194.296 137.606 193.588 135.086 193.588H129.758V209.212H135.086ZM153.668 188.8H159.5V214H153.668V188.8ZM171.312 193.48V200.14H182.976V204.82H171.312V214H165.48V188.8H184.524V193.48H171.312ZM200.568 205.072V214H194.736V205L184.98 188.8H191.172L197.904 199.996L204.636 188.8H210.36L200.568 205.072Z" fill="#252525"/>
         <Path d="M65.5277 214.299L61 214.27C62.6239 209.887 65.8423 207.314 70.4738 206.507C76.2604 205.499 81.8813 208.744 83.8902 214.125C83.7028 214.369 83.4309 214.272 83.1942 214.274C81.9175 214.283 80.6408 214.278 79.364 214.278C76.9891 209.168 67.9343 209.137 65.5277 214.299Z" fill="#F68972"/>
@@ -36,12 +37,15 @@ const Code = (props) => {
         </Defs>
       </Svg>
 
-      <View>
+      </View>
+      
+      <View style={styles.formGroup}>
+        <Label style={{marginBottom: 10}}>Login:</Label>
         <Input 
           style={styles.input}
           onChangeText={setCode}
           value={code}
-          placeholder="Enter code"
+          placeholder="Username or Business Code ..."
         />
         {correct &&
           <View style={styles.icon}>
@@ -59,17 +63,42 @@ const Code = (props) => {
           </View>
         }
       </View>
-      <PrimaryButton title="CONTINUE" onPress={() => props.navigation.navigate("Verified")}/>
-      <Alternate>
-        <Text>Code help</Text>
-      </Alternate>
+      <View style={styles.formGroup}>
+        <Label style={{marginBottom: 10}}>Password:</Label>
+        <Input
+          style={styles.input}
+          placeholder="Enter Password ..."
+          secureTextEntry
+          value={pass}
+          onChangeText={setPass}
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <View style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          marginTop: 18
+        }}>
+          <PrimaryButton style={{ width: "100%", marginBottom: 10 }} title="Let's go!" onPress={() => props.navigation.navigate("QRVerification")}/>
+          <Alternate>
+            <Text>Create an account</Text>
+          </Alternate>
+        </View>
+      </View>
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   input: {
-    flex: 1
+    flex: 1,
+  },
+  formGroup: {
+    marginTop: 12,
+    marginBottom: 12
   },
   icon: {
     position: "absolute",

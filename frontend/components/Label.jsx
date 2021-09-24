@@ -11,8 +11,4 @@ font-style: normal;
 
   color: #252525;
 
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 10px 0px;
 `;
