@@ -40,7 +40,7 @@ export const onboard12Screen = ({ navigation, route }) => {
             <div style={{ marginTop: 30 }}>
 
             <Subtitle>Province:</Subtitle>
-            <DropDown values={PROVINCES}/>
+            <DropDown values={PROVINCES} passedEnabled={false}/>
             </div>
 
             <div style={{ margin: "auto", marginTop: 114, width: "100%" }}>

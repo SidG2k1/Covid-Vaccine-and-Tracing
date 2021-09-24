@@ -13,7 +13,7 @@ import { HouseSymptomsScreen } from "./Screens/User/HouseSymptoms";
 import { CloseContactScreen } from "./Screens/User/CloseContact";
 import { TravelScreen } from "./Screens/User/Travel";
 import { IdentificationPage } from './Screens/User/IdentificationPage';
-import { QRPage } from './Screens/User/QRPage';
+import { QRPage } from './Screens/QRPage';
 import Business from './Screens/Business';
 import Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -26,6 +26,7 @@ import { onboard4Screen } from './Screens/onboard-4';
 import { onboard42Screen } from './Screens/onboard-4-2';
 import { docVerify1Screen } from './Screens/doc-verify-1';
 import { docVerify2Screen } from './Screens/doc-verify-2';
+import { QR1 } from './Screens/qr-1';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -85,8 +86,20 @@ export default function App() {
             component={IdentificationPage}
           />
           <Stack.Screen
+            name="doc-verify-1"
+            component={docVerify1Screen}
+          />
+          <Stack.Screen
+            name="doc-verify-2"
+            component={docVerify2Screen}
+          />
+          <Stack.Screen
             name="QRPage"
             component={QRPage}
+          />
+          <Stack.Screen
+            name="qr-1"
+            component={QR1}
           />
           <Stack.Screen
             name="UserVaccinated"

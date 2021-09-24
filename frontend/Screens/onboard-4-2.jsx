@@ -35,7 +35,7 @@ export const onboard42Screen = ({ navigation, route }) => {
         <div style={{ margin: "auto", marginTop: 39, width: "100%" }}>
           <PrimaryButton
             title="Scan"
-            onPress={() => navigation.navigate('onboard-4-2')}
+            onPress={() => navigation.navigate('doc-verify-1', route.params)}
           />
           <Alternate style={{ textAlign: "center", marginTop: 10 }}>
             I don’t have a receipt

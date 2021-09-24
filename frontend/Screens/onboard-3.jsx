@@ -35,7 +35,7 @@ export const onboard3Screen = ({ navigation, route }) => {
         <div style={{ margin: "auto", marginTop: 39, width: "100%" }}>
           <PrimaryButton
             title="Next"
-            onPress={() => navigation.navigate('onboard-4')}
+            onPress={() => navigation.navigate('onboard-4', route.params)}
           />
           <Alternate style={{ textAlign: "center", marginTop: 10 }}>
             I prefer not to create an account
