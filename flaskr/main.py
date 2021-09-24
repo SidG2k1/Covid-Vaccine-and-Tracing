@@ -28,9 +28,9 @@ UserSymptom = db.Table('UserSymptoms',
 """ BusinessUser model """
 class BusinessUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    business_email = db.Column(db.String(120), unique=True)
-    user_email = db.Column(db.String(120), unique=True)
-    timestamp = db.Column(db.DateTime)
+    business_email = db.Column(db.String(120), unique=False)
+    user_email = db.Column(db.String(120), unique=False)
+    timestamp = db.Column(db.DateTime, unique=True)
 
     def __repr__(self):
         return f'{self.business_email}, {self.user_email}, {self.timestamp}'
@@ -104,21 +104,6 @@ def bus_serializer(bus):
 
 # Initializes db if db not exists. Creates new tables
 db.create_all()
-
-# Adds symptoms for screening question 1 after initialization
-if len(Symptoms.query.all()) == 0:
-    print("Here")
-    db.session.add(Symptoms(symptom="a new or worsening cough"))
-    db.session.add(Symptoms(symptom="shortness of breath"))
-    db.session.add(Symptoms(symptom="difficulty breathing"))
-    db.session.add(Symptoms(symptom="temperature of 38° or above"))
-    db.session.add(Symptoms(symptom="feeling feverish/chills"))
-    db.session.add(Symptoms(symptom="fatigue or weakness"))
-    db.session.add(Symptoms(symptom="muscle or body ache"))
-    db.session.add(Symptoms(symptom="new loss of taste/smell"))
-    db.session.add(Symptoms(symptom="gastrointestinal symptoms"))
-    db.session.add(Symptoms(symptom="feeling very unwell"))
-    db.session.commit()
 
 """ Below are the API route methods """
 

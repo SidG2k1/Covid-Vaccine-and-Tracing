@@ -7,7 +7,7 @@ Designed for deCODE 2021
 3. . venv/bin/activate
 4. cd flaskr
 5. pip install -r requirement.txt
-6. set environment variable: FLASK_APP="__init__.py"
+6. set environment variable: FLASK_APP=main.py
 7. set environment variable: FLASK_ENV="development"
 8. run "flask shell"
 9. run "from flaskr import db"
