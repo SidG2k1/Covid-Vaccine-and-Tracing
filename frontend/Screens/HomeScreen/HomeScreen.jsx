@@ -6,7 +6,7 @@ import Title from '../../components/Title';
 export const HomeScreen = ({ navigation }) => {
     return (
         <React.Fragment>
-            <View style={{ padding: "10px" }} >
+            <View>
                 <Title>Hello</Title>
                 <PrimaryButton
                     title="Register"
@@ -25,8 +25,8 @@ export const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#6ED4C8'
     },
 });

@@ -3,21 +3,23 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {HomeScreen} from './Screens/HomeScreen/HomeScreen.jsx';
-import {Register} from './Screens/Register/Register.jsx';
+import { WelcomeScreen } from "./Screens/Welcome";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            contentStyle:{
+              backgroundColor:'#FFFFFF'
+            }
+          }}
+        >
           <Stack.Screen
             name="Home"
-            component={HomeScreen}
-          />
-          <Stack.Screen
-            name="Register"
-            component={Register}
+            component={WelcomeScreen}
           />
         </Stack.Navigator>
         <StatusBar style="auto" />
