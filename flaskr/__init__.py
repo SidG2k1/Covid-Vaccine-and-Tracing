@@ -1,32 +1,70 @@
 import os
 
-from flask import Flask
+from flask import (Flask, request, render_template,
+                   json, jsonify, url_for, session,Response)
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 
 
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
+app = Flask(__name__)
+CORS(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
+db = SQLAlchemy(app)
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+class Business(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
 
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    def __str__(self):
+        return f'{self.id} {self.content}'
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+def bus_serializer(bus):
+    return {
+        'id': bus.id,
+        'content': bus.content,
+    }
 
-    return app
+@app.route("/api", methods=['GET'])
+@cross_origin()
+def index():
+    return jsonify([*map(bus_serializer, Business.query.all())])
+
+@app.route("/api/create", methods=['POST'])
+@cross_origin()
+def create():
+    request_data = json.loads(request.data)
+    bus = Business(content=request_data['content'])
+
+    db.session.add(bus)
+    db.session.commit()
+
+    return {'201': 'Add succesfully'}
+
+@app.route("/api/create/<int:id>", methods=['POST'])
+@cross_origin()
+def edit(id):
+    request_data = json.loads(request.data)
+    Business.query.filter_by(id=request_data['id']).update(
+        {'content': request_data['content']})
+    db.session.commit()
+
+
+@app.route('/api/<int:id>', methods=['GET'])
+@cross_origin()
+def show(id):
+    return jsonify([*map(bus_serializer, Business.query.filter_by(id=id))])
+
+
+@app.route('/api/<int:id>/delete', methods=['POST'])
+@cross_origin()
+def delete(id):
+    request_data = json.loads(request.data)
+    Business.query.filter_by(id=request_data['id']).delete()
+    db.session.commit()
+
+
+# a simple page that says hello
+@app.route('/hello')
+def hello():
+    return 'Hello, World!'
