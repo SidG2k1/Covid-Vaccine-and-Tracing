@@ -14,7 +14,7 @@ export const WelcomeScreen = ({ navigation }) => {
         <div style={{ marginTop: 10 }}>
           <SecondaryButton
             title="Business"
-
+            onPress={() => navigation.navigate('BusinessRegister')}
           />
         </div>
         <div style={{ marginTop: 20 }}>

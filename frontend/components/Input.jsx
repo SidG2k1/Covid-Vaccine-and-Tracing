@@ -16,14 +16,7 @@ export default styled.TextInput`
   font-size: 17px;
   line-height: 22px;
 
-/* identical to box height, or 129% */
 letter-spacing: -0.408px;
 
-/* Gray 5 */
 color: #E0E0E0;
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 10px 0px;
 `;

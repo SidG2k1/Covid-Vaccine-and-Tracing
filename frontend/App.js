@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { WelcomeScreen } from "./Screens/Welcome";
 import { UserRegistrationScreen } from "./Screens/User/Registration";
+import Business from './Screens/Business';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -27,6 +28,10 @@ export default function App() {
           <Stack.Screen
             name="UserRegister"
             component={UserRegistrationScreen}
+          />
+          <Stack.Screen
+            name="BusinessRegister"
+            component={Business}
           />
         </Stack.Navigator>
         <StatusBar style="auto" />
