@@ -5,6 +5,7 @@ import AdvisoryText from "../components/AdvisoryText";
 import SecondaryButton from "../components/SecondaryButton";
 import PrimaryButton from "../components/PrimaryButton";
 import Alternate from "../components/Alternate";
+
 export const onboard1screen = ({ navigation }) => {
   return (
     <React.Fragment>
@@ -34,7 +35,6 @@ export const onboard1screen = ({ navigation }) => {
           <PrimaryButton
             title="Let's go!"
             onPress={() => navigation.navigate('onboard-1-2')}
-            style={styles.button}
           />
           <Alternate style={{ textAlign: "center", marginTop: 10 }}>
             I already have an account
@@ -44,9 +44,3 @@ export const onboard1screen = ({ navigation }) => {
     </React.Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 20
-  }
-})

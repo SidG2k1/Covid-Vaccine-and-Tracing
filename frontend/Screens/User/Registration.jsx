@@ -15,7 +15,7 @@ export const UserRegistrationScreen = ({ navigation, route }) => {
 
   const updateEmail = (email) => {
     setEmail(email);
-    navigation.setParams({"email":email})
+    navigation.setParams({"email": email})
   };
 
   return (
