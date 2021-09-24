@@ -34,102 +34,104 @@ export default function App() {
     'Montserrat-Bold': Montserrat_700Bold,
   })
 
-  return !loaded ? <AppLoading/> : (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          contentStyle: {
-            backgroundColor: '#FFFFFF',
-          }
-        }}
-      >
-        {/* Complete */}
-        <Stack.Screen
-          name="Loading"
-          component={Loading}
-        />
-        <Stack.Screen
-          name="Welcome"
-          component={onboard1screen}
-        />
+  return !loaded ? <AppLoading /> : (
+    <div style={{width:"80%", marginLeft:"auto",marginRight:"auto"}}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: '#FFFFFF',
+            }
+          }}
+        >
+          {/* Complete */}
+          <Stack.Screen
+            name="Loading"
+            component={Loading}
+          />
+          <Stack.Screen
+            name="Welcome"
+            component={onboard1screen}
+          />
 
-        {/* Last */}
-        <Stack.Screen
-          name="onboard-1-2"
-          component={onboard12Screen}
-        />
-        <Stack.Screen
-          name="onboard-2"
-          component={onboard2Screen}
-        />
-        <Stack.Screen
-          name="onboard-3"
-          component={onboard3Screen}
-        />
-        <Stack.Screen
-          name="onboard-4"
-          component={onboard4Screen}
-        />
-        <Stack.Screen
-          name="onboard-4-2"
-          component={onboard42Screen}
-        />
-        <Stack.Screen
-          name="UserRegister"
-          component={UserRegistrationScreen}
-        />
-        <Stack.Screen
-          name="IdentificationPage"
-          component={IdentificationPage}
-        />
-        <Stack.Screen
-          name="QRPage"
-          component={QRPage}
-        />
-        <Stack.Screen
-          name="UserVaccinated"
-          component={UserVaccinatedScreen}
-        />
-        <Stack.Screen
-          name="UserUploadVaccination"
-          component={UserUploadVaccinationScreen}
-        />
-        <Stack.Screen
-          name="UserVerified"
-          component={UserVerifiedScreen}
-        />
-        <Stack.Screen
-          name="Symptoms"
-          component={SymptomsScreen}
-        />
-        <Stack.Screen
-          name="HouseSymptoms"
-          component={HouseSymptomsScreen}
-        />
-        <Stack.Screen
-          name="CloseContact"
-          component={CloseContactScreen}
-        />
-        <Stack.Screen
-          name="Travel"
-          component={TravelScreen}
-        />
-      </Stack.Navigator>
-      <Stack.Screen
-            name="Home"
-            component={WelcomeScreen}
+          {/* Last */}
+          <Stack.Screen
+            name="onboard-1-2"
+            component={onboard12Screen}
+          />
+          <Stack.Screen
+            name="onboard-2"
+            component={onboard2Screen}
+          />
+          <Stack.Screen
+            name="onboard-3"
+            component={onboard3Screen}
+          />
+          <Stack.Screen
+            name="onboard-4"
+            component={onboard4Screen}
+          />
+          <Stack.Screen
+            name="onboard-4-2"
+            component={onboard42Screen}
           />
           <Stack.Screen
             name="UserRegister"
             component={UserRegistrationScreen}
           />
           <Stack.Screen
-            name="BusinessRegister"
-            component={Business}
+            name="IdentificationPage"
+            component={IdentificationPage}
           />
-      <StatusBar style="auto" />
-              </NavigationContainer>
+          <Stack.Screen
+            name="QRPage"
+            component={QRPage}
+          />
+          <Stack.Screen
+            name="UserVaccinated"
+            component={UserVaccinatedScreen}
+          />
+          <Stack.Screen
+            name="UserUploadVaccination"
+            component={UserUploadVaccinationScreen}
+          />
+          <Stack.Screen
+            name="UserVerified"
+            component={UserVerifiedScreen}
+          />
+          <Stack.Screen
+            name="Symptoms"
+            component={SymptomsScreen}
+          />
+          <Stack.Screen
+            name="HouseSymptoms"
+            component={HouseSymptomsScreen}
+          />
+          <Stack.Screen
+            name="CloseContact"
+            component={CloseContactScreen}
+          />
+          <Stack.Screen
+            name="Travel"
+            component={TravelScreen}
+          />
+        </Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={WelcomeScreen}
+        />
+        <Stack.Screen
+          name="UserRegister"
+          component={UserRegistrationScreen}
+        />
+        <Stack.Screen
+          name="BusinessRegister"
+          component={Business}
+        />
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </div>
   );
 }
 
