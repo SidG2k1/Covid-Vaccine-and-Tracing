@@ -4,7 +4,7 @@ from flask import (Flask, request, render_template,
                    json, jsonify, url_for, session,Response, Blueprint, redirect)
 from flask.signals import appcontext_tearing_down
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, event
 from flask_migrate import Migrate
 from flask_cors import CORS, cross_origin
 
@@ -19,6 +19,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covidtracker.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+""" Customer user model """
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -27,9 +28,15 @@ class Customer(db.Model):
     vaccinated = db.Column(db.Boolean, default=False)
     photo_id = db.Column(db.LargeBinary)
     first_time_log = db.Column(db.Boolean, default=True)
+    province = db.Column(db.String(250))
+    vaccine_receipt = db.Column(db.Integer)
+    screen_question_2 = db.Column(db.Integer)
+    screen_question_3 = db.Column(db.Integer)
+    screen_question_4 = db.Column(db.Integer)
+    completed = db.Column(db.Boolean, default = False)
 
     def __str__(self):
-        return f'{self.id} {self.email} {self.name} {self.vaccinated} {self.photo_id} {self.first_time_log}'
+        return f'{self.id} {self.email} {self.name} {self.vaccinated} {self.photo_id} {self.first_time_log} {self.province} {self.vaccine_receipt} {self.screen_question_2} {self.screen_question_3} {self.screen_question_4} {self.completed}'
 
 def customer_serializer(customer):
     return {
@@ -38,8 +45,26 @@ def customer_serializer(customer):
         'name': customer.name,
         'vaccinated': customer.vaccinated,
         'photo_id': customer.photo_id,
-        'first_time_log': customer.first_time_log
+        'first_time_log': customer.first_time_log,
+        'province': customer.province,
+        'vaccine_receipt': customer.vaccine_receipt,
+        'screen_question_2': customer.screen_question_2,
+        'screen_question_3': customer.screen_question_3,
+        'screen_question_4': customer.screen_question_4
     }
+
+""" Symptoms for screening question 1 """
+class Symptoms(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    symptom = db.Column(db.String(1000))
+
+    def __str__(self):
+        return f'{self.id} {self.symptom}'
+
+UserSymptom = db.Table('UserSymptoms',
+    db.Column('user_id', db.Integer, db.ForeignKey('customer.id'), primary_key=True),
+    db.Column('symptom_id', db.Integer, db.ForeignKey('symptoms.id'), primary_key=True)
+)
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -56,6 +81,21 @@ def bus_serializer(bus):
 
 # Initializes db if db not exists. Creates new tables
 db.create_all()
+
+# Adds symptoms for screening question 1 after initialization
+if len(Symptoms.query.all()) == 0:
+    print("Here")
+    db.session.add(Symptoms(symptom="a new or worsening cough"))
+    db.session.add(Symptoms(symptom="shortness of breath"))
+    db.session.add(Symptoms(symptom="difficulty breathing"))
+    db.session.add(Symptoms(symptom="temperature of 38° or above"))
+    db.session.add(Symptoms(symptom="feeling feverish/chills"))
+    db.session.add(Symptoms(symptom="fatigue or weakness"))
+    db.session.add(Symptoms(symptom="muscle or body ache"))
+    db.session.add(Symptoms(symptom="new loss of taste/smell"))
+    db.session.add(Symptoms(symptom="gastrointestinal symptoms"))
+    db.session.add(Symptoms(symptom="feeling very unwell"))
+    db.session.commit()
 
 """ Below are the API route methods """
 
