@@ -7,7 +7,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 
 export const UserUploadVaccinationScreen = ({ navigation, route }) => {
   return (
-    <>
+    <React.Fragment>
       <Icon />
       <Title>Upload Vaccination</Title>
       <Subtitle>
@@ -17,10 +17,10 @@ export const UserUploadVaccinationScreen = ({ navigation, route }) => {
         <PrimaryButton
           title="Confirm"
           onPress={() =>
-            navigation.navigate('UserVerified', { option: 'None' })
+            navigation.navigate('UserVerified', route.params)
           }
         />
       </div>
-    </>
+    </React.Fragment>
   );
 };

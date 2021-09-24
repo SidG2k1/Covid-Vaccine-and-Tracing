@@ -12,6 +12,8 @@ import { SymptomsScreen } from "./Screens/User/Symptoms";
 import { HouseSymptomsScreen } from "./Screens/User/HouseSymptoms";
 import { CloseContactScreen } from "./Screens/User/CloseContact";
 import { TravelScreen } from "./Screens/User/Travel";
+import { IdentificationPage } from './Screens/User/IdentificationPage';
+import { QRPage } from './Screens/User/QRPage';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -34,6 +36,14 @@ export default function App() {
         <Stack.Screen
           name="UserRegister"
           component={UserRegistrationScreen}
+        />
+        <Stack.Screen
+          name="IdentificationPage"
+          component={IdentificationPage}
+        />
+        <Stack.Screen
+          name="QRPage"
+          component={QRPage}
         />
         <Stack.Screen
           name="UserVaccinated"

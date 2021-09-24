@@ -8,7 +8,7 @@ import { Alert } from "react-native";
 
 export const UserVaccinatedScreen = ({ navigation, route }) => {
   return (
-    <>
+    <React.Fragment>
       <Icon />
       <Title>Have you been vaccinated?</Title>
       <Subtitle>
@@ -19,7 +19,7 @@ export const UserVaccinatedScreen = ({ navigation, route }) => {
         <SecondaryButton
           title="FULLY VACCINATED"
           onPress={() =>
-            navigation.navigate('UserUploadVaccination', { option: 'None' })
+            navigation.navigate('UserUploadVaccination', route.params)
           }
         />
       </div>
@@ -42,6 +42,6 @@ export const UserVaccinatedScreen = ({ navigation, route }) => {
           title="NOT VACCINATED"
         />
       </div>
-    </>
+    </React.Fragment>
   );
 };
