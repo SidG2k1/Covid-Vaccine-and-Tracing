@@ -15,7 +15,7 @@ export const onboard42Screen = ({ navigation, route }) => {
           <Image source={require('../images/5.png')} style={{ width: 303, height: 189 }} />
         </div>
         <Title>
-          WE ARE<br/> ALMOST<br/> THERE!
+          WE ARE<br /> ALMOST<br /> THERE!
         </Title>
 
         <div style={{ marginTop: 80.5 }}>
@@ -25,17 +25,17 @@ export const onboard42Screen = ({ navigation, route }) => {
 
         <div style={{ margin: "auto", marginTop: 60.5 }}>
           <svg width="67" height="10" viewBox="0 0 67 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="5" cy="5" r="4.5" stroke="#F68972"/>
-            <circle cx="24" cy="5" r="4.5" stroke="#F68972"/>
-            <circle cx="43" cy="5" r="4.5" stroke="#F68972"/>
-            <circle cx="62" cy="5" r="5" fill="#F68972"/>
+            <circle cx="5" cy="5" r="4.5" stroke="#F68972" />
+            <circle cx="24" cy="5" r="4.5" stroke="#F68972" />
+            <circle cx="43" cy="5" r="4.5" stroke="#F68972" />
+            <circle cx="62" cy="5" r="5" fill="#F68972" />
           </svg>
         </div>
 
         <div style={{ margin: "auto", marginTop: 39, width: "100%" }}>
           <PrimaryButton
             title="Scan"
-            onPress={() => navigation.navigate('doc-verify-1', route.params)}
+            onPress={() => navigation.navigate('Symptoms', route.params)}
           />
           <Alternate style={{ textAlign: "center", marginTop: 10 }}>
             I don’t have a receipt
