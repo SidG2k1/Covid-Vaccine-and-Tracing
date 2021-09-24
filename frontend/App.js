@@ -13,7 +13,9 @@ export default function App() {
           screenOptions={{
             headerShown: false,
             contentStyle:{
-              backgroundColor:'#FFFFFF'
+              backgroundColor:'#FFFFFF',
+              paddingLeft: 30,
+              paddingRight: 30
             }
           }}
         >
