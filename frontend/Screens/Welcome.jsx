@@ -14,7 +14,6 @@ export const WelcomeScreen = ({ navigation }) => {
         <div style={{ marginTop: 10 }}>
           <SecondaryButton
             title="Business"
-
           />
         </div>
         <div style={{ marginTop: 20 }}>
